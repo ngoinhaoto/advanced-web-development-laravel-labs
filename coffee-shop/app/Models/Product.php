@@ -26,4 +26,13 @@ class Product extends Model
         return number_format($this->price * $quantity) . ' ' . $this->currency;
     }
 
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'currency',
+        'display_image_url',
+        'category_id',
+    ];
+
 }
