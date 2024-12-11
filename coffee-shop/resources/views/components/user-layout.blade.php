@@ -19,6 +19,3 @@
         {{ $components }}
     @endsection
 @endif
-
-
-
