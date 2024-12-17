@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Factories;
 
 use App\Models\Cart;
@@ -24,7 +25,7 @@ class OrderFactory extends Factory
             'phone_number' => fake()->phoneNumber(),
             'email' => fake()->email(),
             'shipping_address' => fake()->streetAddress() . ', ' . fake()->city(),
-            'notes' => fake()->paragraph(1),
+            'notes' => fake()->text(100),
         ];
     }
 }
