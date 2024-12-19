@@ -9,29 +9,32 @@ use Tests\TestCase;
 
 class ProductModelTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     */
     use RefreshDatabase;
 
-    public function test_able_to_get_category(): void
+    public function test_able_to_get_category()
     {
         $product = Product::factory()->create();
+
         $this->assertInstanceOf(Category::class, $product->category);
     }
 
-    public function test_able_to_get_formatted_price()
+    public function test_able_to_get_formatted_price_attribute()
     {
         $product = Product::factory()->create();
+
         $expected_results = number_format($product->price) . ' ' . $product->currency;
-        $this->assertSame($expected_results, $product->getFormattedPriceAttribute());
+
+        $this->assertSame($expected_results, $product->formatted_price);
     }
 
     public function test_able_to_get_formatted_total_amount()
     {
         $quantity = rand(3, 10);
+
         $product = Product::factory()->create();
+
         $expected_results = number_format($product->price * $quantity) . ' ' . $product->currency;
+
         $this->assertSame($expected_results, $product->getFormattedTotalAmount($quantity));
     }
 }

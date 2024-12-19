@@ -20,7 +20,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->sentence(),
-            'description' => fake()->paragraph(),
+            'description' => fake()->sentence(),
             'price' => fake()->numerify('#####'),
             'currency' => Product::DEFAULT_CURRENCY,
             'display_image_url' => Product::DEFAULT_IMAGE,

@@ -11,35 +11,33 @@ use Tests\TestCase;
 
 class CartModelTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     */
-
     use RefreshDatabase;
 
-    public function test_able_to_get_cart_items(): void
+    public function test_able_to_get_cart_items()
     {
+        $cart = Cart::factory()
+            ->has(CartItem::factory()->count(3), 'items')
+            ->create();
 
-        $cart = Cart::factory()->has(CartItem::factory(3), 'items')->create();
-        $this->assertTrue(count($cart->items) === 3);
+        $this->assertTrue(count($cart->items) == 3);
 
         $this->assertInstanceOf(CartItem::class, $cart->items->random());
-
     }
 
-    public function test_able_to_get_order()
+    public function test_able_to_get_cart_order()
     {
         $cart = Cart::factory()
             ->has(Order::factory())
-            ->has(CartItem::factory()
-                    ->count(3), 'items')->create();
+            ->has(CartItem::factory()->count(3), 'items')
+            ->create();
 
         $this->assertInstanceOf(Order::class, $cart->order);
-
     }
+
     public function test_able_to_get_cart_currency_attribute()
     {
         $cart = Cart::factory()->create();
+
         $this->assertSame($cart->currency, Product::DEFAULT_CURRENCY);
     }
 
@@ -66,5 +64,4 @@ class CartModelTest extends TestCase
 
         $this->assertSame($expected_formatted_total_amount, $cart->formatted_total_amount);
     }
-
 }

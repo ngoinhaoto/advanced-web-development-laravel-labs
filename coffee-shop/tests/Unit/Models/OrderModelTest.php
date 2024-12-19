@@ -9,17 +9,15 @@ use Tests\TestCase;
 
 class OrderModelTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     */
-
     use RefreshDatabase;
-    public function test_able_to_get_cart(): void
+
+    public function test_able_to_get_cart()
     {
         $order = Order::factory()->create();
-        $this->assertInstanceOf(Cart::class, $order->cart);
 
+        $this->assertInstanceOf(Cart::class, $order->cart);
     }
+
     public function test_able_to_get_signed_path_to_order_detail_page()
     {
         $this->withoutExceptionHandling();
@@ -30,5 +28,4 @@ class OrderModelTest extends TestCase
 
         $this->get($path)->assertOk();
     }
-
 }
