@@ -20,9 +20,9 @@
             focusAfter && focusAfter.focus()
         },
         setLocale(locale) {
-            $wire.setLocale(locale)
-    
-            location.reload()
+            $wire.setLocale(locale).then(() => {
+                location.reload();
+            });
         },
         setTheme(targetTheme) {
             $wire.setTheme(targetTheme)
